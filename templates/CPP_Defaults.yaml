@@ -1,0 +1,50 @@
+# EPICS V4 C++ Jenkins Jobs
+#
+# Jenkins Job Builder configuration template
+#
+# Author: Ralph Lange <ralph.lange@gmx.de>
+# Copyright (C) 2015 ITER Organization.
+# All rights reserved. Use is subject to license terms.
+
+- defaults:
+    name: CPP-defaults
+
+    generated-job-warning: '<p><i>Automatically generated job. <b>Do not edit using the web interface.</b><br>
+    See <a href="https://github.com/epics-base/jenkins-jobs">job generator repository</a> for details.</i></p>'
+
+    properties:
+        - github:
+            url: https://github.com/epics-base/{repo}/
+
+- defaults:
+    name: CPP-build-defaults
+
+    allow-no-artifact: false
+
+    base_axis:
+        - 3.14.12.5
+        - 3.15.2
+        - 3.16.DEV
+
+    microbench_axis:
+        - MB_NO
+
+    generated-job-warning: '<p><i>Automatically generated job. <b>Do not edit using the web interface.</b><br>
+    See <a href="https://github.com/epics-base/jenkins-jobs">job generator repository</a> for details.</i></p>'
+
+    properties:
+        - github:
+            url: https://github.com/epics-base/{repo}/
+
+    axes:
+        - axis:
+            type: user-defined
+            name: BASE
+            values: '{obj:base_axis}'
+        - axis:
+            type: user-defined
+            name: USE_MB
+            values: '{obj:microbench_axis}'
+
+    builders:
+        - shell: source jenkins/cloudbees_build $BASE $USE_MB
