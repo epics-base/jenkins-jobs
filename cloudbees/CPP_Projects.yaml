@@ -55,7 +55,7 @@
 - project:
     name: pvaSrvCPP
     jobs:
-        - '{name}-prod-jobs':
+        - '{name}-lib-jobs':
             repo: pvaSrv
             module: pvaSrv
             downstream: 'pvDatabaseCPP_Build'
