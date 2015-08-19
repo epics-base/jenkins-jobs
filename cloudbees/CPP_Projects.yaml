@@ -53,6 +53,14 @@
             module: pvaClient
 
 - project:
+    name: pvaPy
+    jobs:
+        - '{name}-lib-jobs':
+            language: 'C++/Python'
+            repo: '{name}'
+            module: '{name}'
+
+- project:
     name: pvaSrvCPP
     jobs:
         - '{name}-lib-jobs':
