@@ -11,6 +11,7 @@
 
     generated-job-warning: '<p><i>Automatically generated job. <b>Do not edit using the web interface.</b><br>
     See <a href="https://github.com/epics-base/jenkins-jobs">job generator repository</a> for details.</i></p>'
+    language: 'C++'
 
     properties:
         - github:
@@ -31,6 +32,7 @@
 
     generated-job-warning: '<p><i>Automatically generated job. <b>Do not edit using the web interface.</b><br>
     See <a href="https://github.com/epics-base/jenkins-jobs">job generator repository</a> for details.</i></p>'
+    language: 'C++'
 
     properties:
         - github:

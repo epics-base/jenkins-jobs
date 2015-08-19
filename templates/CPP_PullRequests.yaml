@@ -11,7 +11,7 @@
     defaults: CPP-build-defaults
 
     project-type: matrix
-    description: '<h2>Build {module} (C++) Pull Requests from GitHub.</h2>
+    description: '<h2>Build {module} ({language}) Pull Requests from GitHub.</h2>
     {generated-job-warning}
     <p><i>Matrix-Configuration version - build against different versions of Base{extra-description}.</i></p>'
 
