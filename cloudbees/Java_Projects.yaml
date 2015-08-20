@@ -28,6 +28,13 @@
             module: '{name}Java'
 
 - project:
+    name: pvaClient
+    jobs:
+        - '{name}-jobs':
+            repo: '{name}Java'
+            module: '{name}Java'
+
+- project:
     name: pvDatabase
     jobs:
         - '{name}-jobs':
