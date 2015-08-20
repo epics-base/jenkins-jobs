@@ -35,6 +35,13 @@
             module: '{name}Java'
 
 - project:
+    name: normativeTypes
+    jobs:
+        - '{name}-jobs':
+            repo: '{name}Java'
+            module: '{name}Java'
+
+- project:
     name: pvDatabase
     jobs:
         - '{name}-jobs':
