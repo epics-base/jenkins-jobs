@@ -11,9 +11,11 @@
     defaults: CPP-build-defaults
 
     project-type: matrix
-    description: '<h2>Build {module} ({language}) Pull Requests from GitHub.</h2>
-    {generated-job-warning}
-    <p><i>Matrix-Configuration version - build against different versions of Base{extra-description}.</i></p>'
+    description: |
+        <h2>Build {module} ({language}) Pull Requests from GitHub.</h2>
+        {generated-job-warning}
+        <p><i>Matrix-Configuration version - build against different versions of 
+        Base{extra-description}.</i></p>
 
     logrotate:
         daysToKeep: 60

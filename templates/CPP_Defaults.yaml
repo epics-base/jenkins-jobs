@@ -9,8 +9,10 @@
 - defaults:
     name: CPP-defaults
 
-    generated-job-warning: '<p><i>Automatically generated job. <b>Do not edit using the web interface.</b><br>
-    See <a href="https://github.com/epics-base/jenkins-jobs">job generator repository</a> for details.</i></p>'
+    generated-job-warning: |
+        <p><i>Automatically generated job. <b>Do not edit using the web interface.</b><br>
+        See <a href="https://github.com/epics-base/jenkins-jobs">job generator repository</a>
+        for details.</i></p>
     language: 'C++'
 
     email-notify: epics-pvdata-devel@lists.sourceforge.net
@@ -32,8 +34,10 @@
     microbench_axis:
         - MB_NO
 
-    generated-job-warning: '<p><i>Automatically generated job. <b>Do not edit using the web interface.</b><br>
-    See <a href="https://github.com/epics-base/jenkins-jobs">job generator repository</a> for details.</i></p>'
+    generated-job-warning: |
+        <p><i>Automatically generated job. <b>Do not edit using the web interface.</b><br>
+        See <a href="https://github.com/epics-base/jenkins-jobs">job generator repository</a>
+        for details.</i></p>
     language: 'C++'
 
     email-notify: epics-pvdata-devel@lists.sourceforge.net

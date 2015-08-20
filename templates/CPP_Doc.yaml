@@ -11,9 +11,10 @@
     defaults: CPP-defaults
 
     project-type: freestyle
-    description: '<h2>Generate documentation for {module} ({language}) from its GitHub repo.</h2>
-    {generated-job-warning}
-    <p>Generate doxygen documentation and deploy the results to SourceForge webspace.</p>'
+    description: |
+        <h2>Generate documentation for {module} ({language}) from its GitHub repo.</h2>
+        {generated-job-warning}
+        <p>Generate doxygen documentation and deploy the results to SourceForge webspace.</p>
 
     logrotate:
         daysToKeep: 60
