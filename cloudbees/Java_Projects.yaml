@@ -1,0 +1,56 @@
+# EPICS V4 Java Jenkins Jobs (aka job builder projects) on CloudBees
+#
+# Jenkins Job Builder configuration
+#
+# Author: Ralph Lange <ralph.lange@gmx.de>
+# Copyright (C) 2015 ITER Organization.
+# All rights reserved. Use is subject to license terms.
+
+- project:
+    name: pvData
+    jobs:
+        - '{name}-jobs':
+            repo: '{name}Java'
+            module: '{name}Java'
+
+- project:
+    name: pvAccess
+    jobs:
+        - '{name}-jobs':
+            repo: '{name}Java'
+            module: '{name}Java'
+
+- project:
+    name: easyPVA
+    jobs:
+        - '{name}-jobs':
+            repo: '{name}Java'
+            module: '{name}Java'
+
+- project:
+    name: pvDatabase
+    jobs:
+        - '{name}-jobs':
+            repo: '{name}Java'
+            module: '{name}Java'
+
+- project:
+    name: pvIOC
+    jobs:
+        - '{name}-jobs':
+            repo: '{name}Java'
+            module: '{name}Java'
+
+- project:
+    name: example
+    jobs:
+        - '{name}-jobs':
+            repo: '{name}Java'
+            module: '{name}Java'
+
+- project:
+    name: directoryService
+    jobs:
+        - '{name}-jobs':
+            repo: '{name}'
+            module: '{name}'

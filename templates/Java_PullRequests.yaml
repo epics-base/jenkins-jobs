@@ -1,0 +1,55 @@
+# EPICS V4 Java Jenkins GitHub Pull Request Build Job
+#
+# Jenkins Job Builder configuration template
+#
+# Author: Ralph Lange <ralph.lange@gmx.de>
+# Copyright (C) 2015 ITER Organization.
+# All rights reserved. Use is subject to license terms.
+
+- job-template:
+    name: '{name} (Java) - PullRequests'
+    defaults: Java-build-defaults
+
+    project-type: maven
+    description: |
+        <h2>Build {name} ({language}) Pull Requests from GitHub.</h2>
+        {generated-job-warning}
+
+    block-upstream: true
+
+    logrotate:
+        daysToKeep: 60
+        numToKeep: -1
+        artifactDaysToKeep: 0
+        artifactNumToKeep: 0
+
+    scm:
+        - git:
+            url: https://github.com/epics-base/{repo}.git
+            refspec: '+refs/pull/*:refs/remotes/origin/pr/*'
+            branches:
+                - '${{sha1}}'
+            shallow-clone: true
+
+    triggers:
+        - github-pull-request:
+            admin-list:
+                - msekoranja
+                - mrkraimer
+                - ralphlange
+                - anjohnson
+            org-list:
+                - epics-base
+            cron: 'H/5 * * * *'
+            white-list-target-branches:
+                - master
+
+    maven-goals: verify
+
+    publishers:
+        - archive:
+            artifacts: 'target/*.jar'
+            only-if-success: true
+        - email:
+            recipients: ''
+            send-to-individuals: true

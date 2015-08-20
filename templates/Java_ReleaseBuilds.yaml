@@ -1,0 +1,49 @@
+# EPICS V4 Java Jenkins Release Builds Job
+#
+# Jenkins Job Builder configuration template
+#
+# Author: Ralph Lange <ralph.lange@gmx.de>
+# Copyright (C) 2015 ITER Organization.
+# All rights reserved. Use is subject to license terms.
+
+- job-template:
+    name: '{name} (Java) - ReleaseBuilds'
+    defaults: Java-build-defaults
+
+    project-type: maven
+    description: |
+        <h2>Build {name} ({language}) from its GitHub repo release branches.</h2>
+        {generated-job-warning}
+
+    block-upstream: true
+
+    scm:
+        - git:
+            url: https://github.com/epics-base/{repo}.git
+            branches:
+                - 'origin/release/*'
+            shallow-clone: true
+
+    triggers:
+        - pollscm: 'H/5 * * * *'
+
+    wrappers:
+    - raw:
+        xml: |
+            <com.cloudbees.jenkins.forge.WebDavMounter plugin="cloudbees-forge-plugin"/>
+
+    prebuilders:
+        - shell: 'ssh epics-jenkins,epics@shell.sourceforge.net create'
+
+    maven-goals: deploy
+
+    publishers:
+        - archive:
+            artifacts: 'target/*.jar'
+            only-if-success: true
+        - description-setter:
+            regexp: '.*\[INFO\] Building .* ([^\s]*)$'
+            description: 'version \1'
+        - email:
+            recipients: '{email-notify}'
+            send-to-individuals: true

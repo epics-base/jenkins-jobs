@@ -1,0 +1,14 @@
+# EPICS V4 Java Jenkins Job Groups
+#
+# Jenkins Job Builder configuration template
+#
+# Author: Ralph Lange <ralph.lange@gmx.de>
+# Copyright (C) 2015 ITER Organization.
+# All rights reserved. Use is subject to license terms.
+
+- job-group:
+    name: '{name}-jobs'
+    jobs:
+        - '{name} (Java) - Build'
+        - '{name} (Java) - PullRequests'
+        - '{name} (Java) - ReleaseBuilds'
