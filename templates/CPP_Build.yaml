@@ -41,5 +41,5 @@
         - trigger:
             project: '{downstream}'
         - email:
-            recipients: epics-pvdata-devel@lists.sourceforge.net
+            recipients: '{email-notify}'
             send-to-individuals: true
