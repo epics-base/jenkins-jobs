@@ -22,3 +22,9 @@
         - '{name}_Build':
             allow-no-artifact: true
         - '{name}_PullRequests'
+
+# Release branch build
+- job-group:
+    name: '{name}-release-branch-jobs'
+    jobs:
+        - '{name}_Release-{branch}-Build'

@@ -1,0 +1,48 @@
+# EPICS V4 C++ Jenkins Release Build Job
+#
+# Jenkins Job Builder configuration template
+#
+# Author: Ralph Lange <ralph.lange@gmx.de>
+# Copyright (C) 2015 ITER Organization.
+# All rights reserved. Use is subject to license terms.
+
+- job-template:
+    name: '{name}_Release-{branch}-Build'
+    defaults: CPP-build-defaults
+
+    project-type: matrix
+    description: |
+        <h2>Build {module} ({language}) from its GitHub repo branch
+        <a href="https://github.com/epics-base/pvaSrv/tree/release/{branch}">release/{branch}</a>.</h2>
+        {generated-job-warning}
+        <p>Matrix-Configuration version - build against different versions of
+        Base{extra-description}.</p>
+
+    block-upstream: true
+
+    scm:
+        - git:
+            url: https://github.com/epics-base/{repo}.git
+            branches:
+                - 'origin/release/{branch}'
+
+    triggers:
+        - github
+
+    builders:
+        - shell: |
+            TAG=$(git describe --tags --match "{branch}.*")
+            echo "[INFO] Building $TAG"
+            source jenkins/cloudbees_build $BASE $USE_MB
+
+    publishers:
+        - archive:
+            artifacts: '{module}.CB-dist.tar.gz'
+            allow-empty: '{allow-no-artifact}'
+            only-if-success: true
+        - description-setter:
+            regexp: '.*\[INFO\] Building ([^\s]*)$'
+            description: 'version \1'
+        - email:
+            recipients: '{email-notify}'
+            send-to-individuals: true
