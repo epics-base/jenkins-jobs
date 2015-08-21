@@ -36,7 +36,7 @@ To check the generated XML, use JJB's `test` command:
 $ jenkins-jobs --conf ./cloudbees.ini test templates:cloudbees
 ```
 You can add job names as additional arguments to limit the XML generation
-to the specified jobs.
+to the specified jobs. Wildcards in job names are supported.
 
 ### Update
 
@@ -45,6 +45,7 @@ To update the jobs on CloudBees, use JJB's `update` command:
 $ jenkins-jobs --conf ./cloudbees.ini update templates:cloudbees
 ```
 Job names as additional arguments will update only the specified jobs.
+Wildcards in job names are supported.
 
 ### Be Careful
 
