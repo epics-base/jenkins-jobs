@@ -34,6 +34,12 @@
     microbench_axis:
         - MB_NO
 
+    logrotate:
+        daysToKeep: 60
+        numToKeep: -1
+        artifactDaysToKeep: -1
+        artifactNumToKeep: 20
+
     generated-job-warning: |
         <p><i>Automatically generated job. <b>Do not edit using the web interface.</b><br>
         See <a href="https://github.com/epics-base/jenkins-jobs">job generator repository</a>

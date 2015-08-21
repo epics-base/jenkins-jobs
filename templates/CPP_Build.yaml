@@ -19,12 +19,6 @@
 
     block-upstream: true
 
-    logrotate:
-        daysToKeep: 60
-        numToKeep: -1
-        artifactDaysToKeep: -1
-        artifactNumToKeep: 20
-
     scm:
         - git:
             url: https://github.com/epics-base/{repo}.git
