@@ -30,7 +30,6 @@
             url: https://github.com/epics-base/{repo}.git
             branches:
                 - '*/master'
-            shallow-clone: true
 
     triggers:
         - pollscm: 'H/5 * * * *'

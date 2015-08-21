@@ -22,7 +22,6 @@
             url: https://github.com/epics-base/{repo}.git
             branches:
                 - 'origin/release/*'
-            shallow-clone: true
 
     triggers:
         - pollscm: 'H/5 * * * *'
