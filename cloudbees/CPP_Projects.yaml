@@ -8,10 +8,10 @@
 
 - project:
     name: pvCommonCPP
+    repo: '{name}'
+    module: pvCommon
     jobs:
         - '{name}-lib-jobs':
-            repo: '{name}'
-            module: pvCommon
             extra-description: ', built with Micro-Benchmarks'
             downstream: 'pvAccessCPP_Build,normativeTypesCPP_Build,pvaSrvCPP_Build,exampleCPP_Build'
             microbench_axis:
@@ -19,18 +19,18 @@
 
 - project:
     name: pvDataCPP
+    repo: '{name}'
+    module: pvData
     jobs:
         - '{name}-lib-jobs':
-            repo: '{name}'
-            module: pvData
             downstream: 'pvAccessCPP_Build,normativeTypesCPP_Build,pvaSrvCPP_Build,pvDatabaseCPP_Build,exampleCPP_Build'
 
 - project:
     name: pvAccessCPP
+    repo: '{name}'
+    module: pvAccess
     jobs:
         - '{name}-lib-jobs':
-            repo: '{name}'
-            module: pvAccess
             extra-description: ', with or without Micro-Benchmarks'
             downstream: 'pvaSrvCPP_Build,exampleCPP_Build,pvDatabaseCPP_Build,pvaClientCPP_Build'
             microbench_axis:
@@ -39,45 +39,45 @@
 
 - project:
     name: normativeTypesCPP
+    repo: '{name}'
+    module: normativeTypes
     jobs:
         - '{name}-lib-jobs':
-            repo: '{name}'
-            module: normativeTypes
             downstream: 'pvaClientCPP_Build'
 
 - project:
     name: pvaClientCPP
+    repo: '{name}'
+    module: pvaClient
     jobs:
         - '{name}-lib-jobs':
-            repo: '{name}'
-            module: pvaClient
 
 - project:
     name: pvaPy
+    repo: '{name}'
+    module: '{name}'
     jobs:
         - '{name}-lib-jobs':
             language: 'C++/Python'
-            repo: '{name}'
-            module: '{name}'
 
 - project:
     name: pvaSrvCPP
+    repo: pvaSrv
+    module: pvaSrv
     jobs:
         - '{name}-lib-jobs':
-            repo: pvaSrv
-            module: pvaSrv
             downstream: 'pvDatabaseCPP_Build'
 
 - project:
     name: pvDatabaseCPP
+    repo: '{name}'
+    module: pvDatabase
     jobs:
         - '{name}-lib-jobs':
-            repo: '{name}'
-            module: pvDatabase
 
 - project:
     name: exampleCPP
+    repo: '{name}'
+    module: example
     jobs:
         - '{name}-prod-jobs':
-            repo: '{name}'
-            module: example
