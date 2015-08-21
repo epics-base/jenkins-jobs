@@ -39,7 +39,7 @@
                 - anjohnson
             org-list:
                 - epics-base
-            cron: 'H/5 * * * *'
+            github-hooks: true
             white-list-target-branches:
                 - master
 

@@ -24,7 +24,7 @@
                 - '*/master'
 
     triggers:
-        - pollscm: 'H/5 * * * *'
+        - github
 
     wrappers:
         - raw:

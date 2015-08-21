@@ -32,7 +32,7 @@
                 - '*/master'
 
     triggers:
-        - pollscm: 'H/5 * * * *'
+        - github
 
     publishers:
         - archive:
