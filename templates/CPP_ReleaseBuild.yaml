@@ -13,7 +13,7 @@
     project-type: matrix
     description: |
         <h2>Build {module} ({language}) from its GitHub repo branch
-        <a href="https://github.com/epics-base/pvaSrv/tree/release/{branch}">release/{branch}</a>.</h2>
+        <a href="https://github.com/epics-base/{repo}/tree/release/{branch}">release/{branch}</a>.</h2>
         {generated-job-warning}
         <p>Matrix-Configuration version - build against different versions of
         Base{extra-description}.</p>
