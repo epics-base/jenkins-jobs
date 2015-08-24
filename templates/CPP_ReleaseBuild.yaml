@@ -32,7 +32,7 @@
     builders:
         - shell: |
             TAG=$(git describe --tags --match "{branch}.*")
-            echo "[INFO] Building $TAG"
+            echo [INFO] Building $TAG
             source jenkins/cloudbees_build $BASE $USE_MB
 
     publishers:
@@ -41,8 +41,8 @@
             allow-empty: '{allow-no-artifact}'
             only-if-success: true
         - description-setter:
-            regexp: '.*\[INFO\] Building ([^\s]*)$'
-            description: 'version \1'
+            regexp: .*\[INFO\] Building ([^\s]*-g([^-\s]+))
+            description: 'version <a href="https://github.com/epics-base/{repo}/tree/\2">\1</a>'
         - email:
             recipients: '{email-notify}'
             send-to-individuals: true
