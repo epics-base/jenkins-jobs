@@ -32,7 +32,10 @@
             <com.cloudbees.jenkins.forge.WebDavMounter plugin="cloudbees-forge-plugin"/>
 
     prebuilders:
-        - shell: 'ssh epics-jenkins,epics@shell.sourceforge.net create'
+        - shell: |
+            ssh epics-jenkins,epics@shell.sourceforge.net create
+            TAG=$(git describe --tags --match "{branch}.*")
+            echo [INFO] Git revision $TAG
 
     maven-goals: deploy
 
@@ -41,8 +44,8 @@
             artifacts: 'target/*.jar'
             only-if-success: true
         - description-setter:
-            regexp: '.*\[INFO\] Building .* ([^\s]*)$'
-            description: 'version \1'
+            regexp: .*\[INFO\] Git revision ([^\s]*-g([^-\s]+))
+            description: 'version <a href="https://github.com/epics-base/{repo}/tree/\2">\1</a>'
         - email:
             recipients: '{email-notify}'
             send-to-individuals: true
