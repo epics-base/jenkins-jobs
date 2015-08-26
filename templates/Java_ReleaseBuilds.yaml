@@ -34,7 +34,7 @@
     prebuilders:
         - shell: |
             ssh epics-jenkins,epics@shell.sourceforge.net create
-            TAG=$(git describe --tags --match "{branch}.*")
+            TAG=$(git describe --tags --match "*.*" --always)
             echo [INFO] Git revision $TAG
 
     maven-goals: deploy

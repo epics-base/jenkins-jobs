@@ -31,7 +31,7 @@
 
     builders:
         - shell: |
-            TAG=$(git describe --tags --match "{branch}.*")
+            TAG=$(git describe --tags --match "{branch}.*" --always)
             echo [INFO] Git revision $TAG
             source jenkins/cloudbees_build $BASE $USE_MB
 
