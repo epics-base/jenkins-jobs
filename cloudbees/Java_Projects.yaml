@@ -49,13 +49,6 @@
             module: '{name}Java'
 
 - project:
-    name: pvIOC
-    jobs:
-        - '{name}-jobs':
-            repo: '{name}Java'
-            module: '{name}Java'
-
-- project:
     name: example
     jobs:
         - '{name}-jobs':
