@@ -44,6 +44,8 @@
             regexp: .*\[INFO\] Git revision ([^\s]*-g([^-\s]+))
             description: 'version <a href="https://github.com/epics-base/{repo}/tree/\2">\1</a>'
             set-for-matrix: true
+        - trigger:
+            project: '{downstream}'
         - email:
             recipients: '{email-notify}'
             send-to-individuals: true
