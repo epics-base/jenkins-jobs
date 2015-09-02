@@ -19,6 +19,8 @@
         - '{name}-release-branch-jobs':
             branch:
                 - '4.0'
+                - '4.1':
+                    downstream: 'pvAccessCPP_Release-4.1-Build'
 
 - project:
     name: pvDataCPP
@@ -48,6 +50,7 @@
                     extra-description: ', build with Micro-Benchmarks'
                     microbench_axis:
                         - MB_YES
+                - '4.1'
 
 - project:
     name: normativeTypesCPP
