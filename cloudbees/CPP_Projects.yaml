@@ -79,7 +79,10 @@
     module: '{name}'
     language: 'C++/Python'
     jobs:
-        - '{name}-lib-jobs':
+        - '{name}-lib-jobs'
+        - '{name}-release-branch-jobs':
+            branch:
+                - '0.5'
 
 - project:
     name: pvaSrvCPP
