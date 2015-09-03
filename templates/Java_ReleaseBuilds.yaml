@@ -44,7 +44,7 @@
             artifacts: 'target/*.jar'
             only-if-success: true
         - description-setter:
-            regexp: .*\[INFO\] Git revision (([^-\s]*)-[0-9]+-g([^\s]*)|([^-\s]*)))
+            regexp: .*\[INFO\] Git revision (([^-\s]*)-[0-9]+-g([^\s]*)|([^-\s]*))
             description: 'version <a href="https://github.com/epics-base/{repo}/tree/\3\4">\1</a>'
         - email:
             recipients: '{email-notify}'
