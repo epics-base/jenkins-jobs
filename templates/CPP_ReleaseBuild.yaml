@@ -41,8 +41,8 @@
             allow-empty: '{allow-no-artifact}'
             only-if-success: true
         - description-setter:
-            regexp: .*\[INFO\] Git revision ([^\s]*-g([^-\s]+))
-            description: 'version <a href="https://github.com/epics-base/{repo}/tree/\2">\1</a>'
+            regexp: .*\[INFO\] Git revision (([^-\s]*)-[0-9]+-g([^\s]*)|([^-\s]*))
+            description: 'version <a href="https://github.com/epics-base/{repo}/tree/\3\4">\1</a>'
             set-for-matrix: true
         - trigger:
             project: '{downstream}'
