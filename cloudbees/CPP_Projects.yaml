@@ -51,6 +51,7 @@
                     microbench_axis:
                         - MB_YES
                 - '4.1'
+                    downstream: 'pvaPy_Release-0.5-Build'
 
 - project:
     name: normativeTypesCPP
