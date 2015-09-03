@@ -103,6 +103,7 @@
                         - MB_YES
                     base_axis:
                         - 3.14.12.5
+                - '0.11'
 
 - project:
     name: pvDatabaseCPP
