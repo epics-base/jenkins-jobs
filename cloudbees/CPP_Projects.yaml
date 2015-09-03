@@ -28,7 +28,7 @@
     module: pvData
     jobs:
         - '{name}-lib-jobs':
-            downstream: 'pvAccessCPP_Build,normativeTypesCPP_Build,pvaSrvCPP_Build,pvDatabaseCPP_Build,exampleCPP_Build'
+            downstream: 'pvAccessCPP_Build,normativeTypesCPP_Build,pvaSrvCPP_Build,pvDatabaseCPP_Build,exampleCPP_Build,pvaPy_Build'
         - '{name}-release-branch-jobs':
             branch:
                 - '4.0'
@@ -43,7 +43,7 @@
         - MB_NO
     jobs:
         - '{name}-lib-jobs':
-            downstream: 'pvaSrvCPP_Build,exampleCPP_Build,pvDatabaseCPP_Build,pvaClientCPP_Build'
+            downstream: 'pvaSrvCPP_Build,exampleCPP_Build,pvDatabaseCPP_Build,pvaClientCPP_Build,pvaPy_Build'
         - '{name}-release-branch-jobs':
             branch:
                 - '4.0':
@@ -58,7 +58,7 @@
     module: normativeTypes
     jobs:
         - '{name}-lib-jobs':
-            downstream: 'pvaClientCPP_Build'
+            downstream: 'pvaClientCPP_Build,pvaPy_Build'
         - '{name}-release-branch-jobs':
             branch:
                 - '4.0':
@@ -72,6 +72,7 @@
     module: pvaClient
     jobs:
         - '{name}-lib-jobs':
+            downstream: 'pvaPy_Build'
 
 - project:
     name: pvaPy
