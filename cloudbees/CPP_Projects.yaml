@@ -20,7 +20,7 @@
             branch:
                 - '4.0'
                 - '4.1':
-                    downstream: 'pvAccessCPP_Release-4.1-Build,normativeTypesCPP_Release-5.0-Build,pvaSrvCPP_Release-0.11-Build'
+                    downstream: 'pvAccessCPP_Release-4.1-Build,normativeTypesCPP_Release-5.0-Build,pvaSrvCPP_Release-0.11-Build,exampleCPP_Release-4.1-Build'
 
 - project:
     name: pvDataCPP
@@ -33,7 +33,7 @@
             branch:
                 - '4.0'
                 - '5.0':
-                    downstream: 'pvAccessCPP_Release-4.1-Build,normativeTypesCPP_Release-5.0-Build,pvaSrvCPP_Release-0.11-Build,pvDatabaseCPP_Release-4.1-Build,pvaPy_Release-0.5-Build'
+                    downstream: 'pvAccessCPP_Release-4.1-Build,normativeTypesCPP_Release-5.0-Build,pvaSrvCPP_Release-0.11-Build,pvDatabaseCPP_Release-4.1-Build,exampleCPP_Release-4.1-Build,pvaPy_Release-0.5-Build'
 
 - project:
     name: pvAccessCPP
@@ -54,7 +54,7 @@
                     microbench_axis:
                         - MB_YES
                 - '4.1':
-                    downstream: 'pvaSrvCPP_Release-0.11-Build,pvDatabaseCPP_Release-4.1-Build,pvaClientCPP_Release-4.1-Build,pvaPy_Release-0.5-Build'
+                    downstream: 'pvaSrvCPP_Release-0.11-Build,exampleCPP_Release-4.1-Build,pvDatabaseCPP_Release-4.1-Build,pvaClientCPP_Release-4.1-Build,pvaPy_Release-0.5-Build'
 
 - project:
     name: normativeTypesCPP
@@ -143,3 +143,4 @@
                     extra-description: ', build with Micro-Benchmarks'
                     microbench_axis:
                         - MB_YES
+                - '4.1'
