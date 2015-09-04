@@ -77,6 +77,9 @@
     jobs:
         - '{name}-lib-jobs':
             downstream: 'pvaPy_Build'
+        - '{name}-release-branch-jobs':
+            branch:
+                - '4.1'
 
 - project:
     name: pvaPy
