@@ -28,3 +28,5 @@
     name: '{name}-release-branch-jobs'
     jobs:
         - '{name}_Release-{branch}-Build'
+        - '{name}_Release-{branch}-Doc':
+            email-notify: ralph.lange@gmx.de
