@@ -16,7 +16,7 @@
     jobs:
         - '{name}-lib-jobs':
             downstream: 'pvAccessCPP_Build,normativeTypesCPP_Build,pvaSrvCPP_Build,exampleCPP_Build'
-        - '{name}-release-branch-jobs':
+        - '{name}-lib-release-branch-jobs':
             branch:
                 - '4.0'
                 - '4.1':
@@ -29,7 +29,7 @@
     jobs:
         - '{name}-lib-jobs':
             downstream: 'pvAccessCPP_Build,normativeTypesCPP_Build,pvaSrvCPP_Build,pvDatabaseCPP_Build,exampleCPP_Build,pvaPy_Build'
-        - '{name}-release-branch-jobs':
+        - '{name}-lib-release-branch-jobs':
             branch:
                 - '4.0'
                 - '5.0':
@@ -46,7 +46,7 @@
     jobs:
         - '{name}-lib-jobs':
             downstream: 'pvaSrvCPP_Build,exampleCPP_Build,pvDatabaseCPP_Build,pvaClientCPP_Build,pvaPy_Build'
-        - '{name}-release-branch-jobs':
+        - '{name}-lib-release-branch-jobs':
             branch:
                 - '4.0':
                     extra-description: ', build with Micro-Benchmarks'
@@ -63,7 +63,7 @@
     jobs:
         - '{name}-lib-jobs':
             downstream: 'pvaClientCPP_Build,pvaPy_Build'
-        - '{name}-release-branch-jobs':
+        - '{name}-lib-release-branch-jobs':
             branch:
                 - '4.0':
                     extra-description: ', build with Micro-Benchmarks'
@@ -79,7 +79,7 @@
     jobs:
         - '{name}-lib-jobs':
             downstream: 'pvaPy_Build'
-        - '{name}-release-branch-jobs':
+        - '{name}-lib-release-branch-jobs':
             branch:
                 - '4.1':
                     downstream: 'pvaPy_Release-0.5-Build'
@@ -91,7 +91,7 @@
     language: 'C++/Python'
     jobs:
         - '{name}-lib-jobs'
-        - '{name}-release-branch-jobs':
+        - '{name}-lib-release-branch-jobs':
             branch:
                 - '0.5'
 
@@ -102,7 +102,7 @@
     jobs:
         - '{name}-lib-jobs':
             downstream: 'pvDatabaseCPP_Build'
-        - '{name}-release-branch-jobs':
+        - '{name}-lib-release-branch-jobs':
             branch:
                 - '0.10':
                     extra-description: ' (release 0.10 only against Base 3.14), build with Micro-Benchmarks'
@@ -120,7 +120,7 @@
     module: pvDatabase
     jobs:
         - '{name}-lib-jobs'
-        - '{name}-release-branch-jobs':
+        - '{name}-lib-release-branch-jobs':
             branch:
                 - '4.0':
                     extra-description: ' (release 4.0 only against Base 3.14), build with Micro-Benchmarks'
@@ -137,7 +137,7 @@
     allow-no-artifact: true
     jobs:
         - '{name}-prod-jobs'
-        - '{name}-release-branch-jobs':
+        - '{name}-prod-release-branch-jobs':
             branch:
                 - '4.0':
                     extra-description: ', build with Micro-Benchmarks'

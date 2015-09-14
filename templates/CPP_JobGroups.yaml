@@ -23,10 +23,16 @@
             allow-no-artifact: true
         - '{name}_PullRequests'
 
-# Release branch build
+# Release branch lib build
 - job-group:
-    name: '{name}-release-branch-jobs'
+    name: '{name}-lib-release-branch-jobs'
     jobs:
         - '{name}_Release-{branch}-Build'
-        - '{name}_Release-{branch}-Doc':
-            email-notify: ralph.lange@gmx.de
+        - '{name}_Release-{branch}-Doc'
+
+# Release branch product build: no API documentation
+- job-group:
+    name: '{name}-prod-release-branch-jobs'
+    jobs:
+        - '{name}_Release-{branch}-Build':
+            allow-no-artifact: true
