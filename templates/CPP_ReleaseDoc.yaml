@@ -32,9 +32,7 @@
             skip-tag: true
 
     triggers:
-        - reverse:
-            jobs: '{name}_Release-{branch}-Build'
-            result: 'unstable'
+        - github
 
     builders:
         - shell: |
