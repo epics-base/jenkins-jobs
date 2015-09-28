@@ -20,7 +20,7 @@
     parameters:
         - string:
             name: TAG
-            description: "Specific tag to build"
+            description: "Specific git tag to build"
 
     scm:
         - git:
@@ -48,4 +48,4 @@
             only-if-success: true
         - description-setter:
             regexp: .*\[INFO\] Git revision (([^-\s]*)-[0-9]+-g([^\s]*)|([^-\s]*))
-            description: 'version <a href="https://github.com/epics-base/{repo}/tree/\3\4">\1</a>'
+            description: 'tag/version <a href="https://github.com/epics-base/{repo}/tree/\3\4">\1</a>'
