@@ -10,5 +10,6 @@
     name: '{name}-jobs'
     jobs:
         - '{name} (Java) - Build'
+        - '{name} (Java) - SpecificBuild'
         - '{name} (Java) - PullRequests'
         - '{name} (Java) - ReleaseBuilds'

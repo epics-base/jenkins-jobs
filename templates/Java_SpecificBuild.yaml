@@ -1,0 +1,51 @@
+# EPICS V4 Java Jenkins Specific Build Job
+#
+# Jenkins Job Builder configuration template
+#
+# Author: Ralph Lange <ralph.lange@gmx.de>
+# Copyright (C) 2015 ITER Organization.
+# All rights reserved. Use is subject to license terms.
+
+- job-template:
+    name: '{name} (Java) - SpecificBuild'
+    defaults: Java-build-defaults
+
+    project-type: maven
+    description: |
+        <h2>Build {name} ({language}) from a specific tag in its GitHub repo.</h2>
+        {generated-job-warning}
+
+    block-upstream: true
+
+    parameters:
+        - string:
+            name: TAG
+            description: "Specific tag to build"
+
+    scm:
+        - git:
+            url: https://github.com/epics-base/{repo}.git
+            shallow-clone: true
+            branches:
+                - 'tags/${{TAG}}'
+
+    wrappers:
+        - raw:
+            xml: |
+                <com.cloudbees.jenkins.forge.WebDavMounter plugin="cloudbees-forge-plugin"/>
+
+    prebuilders:
+        - shell: |
+            ssh epics-jenkins,epics@shell.sourceforge.net create
+            TAG=$(git describe --tags --match "*.*" --always)
+            echo [INFO] Git revision $TAG
+
+    maven-goals: deploy
+
+    publishers:
+        - archive:
+            artifacts: 'target/*.jar'
+            only-if-success: true
+        - description-setter:
+            regexp: .*\[INFO\] Git revision (([^-\s]*)-[0-9]+-g([^\s]*)|([^-\s]*))
+            description: 'version <a href="https://github.com/epics-base/{repo}/tree/\3\4">\1</a>'
