@@ -15,6 +15,14 @@
         <h2>Build {name} ({language}) from a specific tag in its GitHub repo.</h2>
         {generated-job-warning}
 
+    maven:
+        ignore-upstream-changes: true
+        goals: 'clean {maven-goals}'
+        root-module:
+            group-id: org.epics
+            artifact-id: '{module}'
+        settings: /private/openepics/settings.xml
+
     block-upstream: true
 
     parameters:
