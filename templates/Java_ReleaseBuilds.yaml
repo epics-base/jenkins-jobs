@@ -22,6 +22,7 @@
             url: https://github.com/epics-base/{repo}.git
             branches:
                 - 'origin/release/*'
+            skip-tag: true
 
     triggers:
         - github
@@ -38,6 +39,20 @@
             echo [INFO] Git revision $TAG
 
     maven-goals: deploy
+
+    postbuilders:
+        - shell: |
+            TAG=$(git describe --tags --match "*.*" --always)
+            RELEASE=$(git describe --tags --candidates=0) || true
+            if [ "$TAG" = "$RELEASE" ]; then
+                DOC=target/documentation
+                rm -fr ${{DOC}}; mkdir -p ${{DOC}}
+                cp -a documentation/* ${{DOC}}
+                cp -a target/apidocs ${{DOC}}/html
+                echo "Created by CloudBees Jenkins release build job. Should be deleted as part of the job." > DUMMY
+                rsync -q -e ssh DUMMY epics-jenkins@web.sourceforge.net:/home/project-web/epics-pvdata/htdocs/docbuild/{module}/$RELEASE/
+                rsync -aqP --delete -e ssh ${{DOC}} epics-jenkins@web.sourceforge.net:/home/project-web/epics-pvdata/htdocs/docbuild/{module}/$RELEASE/
+            fi
 
     publishers:
         - archive:
