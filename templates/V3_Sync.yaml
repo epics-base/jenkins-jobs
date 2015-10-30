@@ -9,8 +9,8 @@
 - job-template:
     name: 'V3-sync-{branch}-lp2gh'
 
-    gh-repo: 'epics-base-x'
-    email-notify: ralph.lange@gmx.de, mdavidsaver@gmail.com
+    gh-repo: 'epics-base'
+    email-notify: ralph.lange@gmx.de, mdavidsaver@gmail.com, anj@aps.anl.gov
 
     project-type: freestyle
     description: |
