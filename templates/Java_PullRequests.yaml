@@ -43,6 +43,11 @@
             white-list-target-branches:
                 - master
 
+    wrappers:
+        - raw:
+            xml: |
+                <com.cloudbees.jenkins.forge.WebDavMounter plugin="cloudbees-forge-plugin"/>
+
     maven-goals: verify
 
     publishers:
