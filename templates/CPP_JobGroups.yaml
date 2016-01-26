@@ -14,6 +14,8 @@
             allow-no-artifact: false
         - '{name}_PullRequests'
         - '{name}_Doc'
+        - '{name}_SpecificBuild'
+        - '{name}_SpecificDoc'
 
 # Product build: no binary tar created, and no API documentation
 - job-group:

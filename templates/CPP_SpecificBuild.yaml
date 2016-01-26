@@ -1,0 +1,49 @@
+# EPICS V4 C++ Jenkins Specific Build Job
+#
+# Jenkins Job Builder configuration template
+#
+# Author: Ralph Lange <ralph.lange@gmx.de>
+# Copyright (C) 2015 ITER Organization.
+# All rights reserved. Use is subject to license terms.
+
+- job-template:
+    name: '{name}_Specific-Build'
+    defaults: CPP-build-defaults
+
+    project-type: matrix
+    description: |
+        <h2>Build {module} ({language}) from a specific tag in its GitHub repo.</h2>
+        {generated-job-warning}
+        <p>Matrix-Configuration version - build against different versions of
+        Base{extra-description}.</p>
+
+    block-upstream: true
+
+    parameters:
+        - string:
+            name: TAG
+            description: "Specific git tag to build"
+
+    scm:
+        - git:
+            url: https://github.com/epics-base/{repo}.git
+            shallow-clone: true
+            branches:
+                - 'tags/${{TAG}}'
+            skip-tag: true
+
+    builders:
+        - shell: |
+            TAG=$(git describe --tags --match "{branch}.*" --always)
+            echo [INFO] Git revision $TAG
+            source jenkins/cloudbees_build $BASE $USE_MB
+
+    publishers:
+        - archive:
+            artifacts: '{module}.CB-dist.tar.gz'
+            allow-empty: '{allow-no-artifact}'
+            only-if-success: true
+        - description-setter:
+            regexp: .*\[INFO\] Git revision (([^-\s]*)-[0-9]+-g([^\s]*)|([^-\s]*))
+            description: 'version <a href="https://github.com/epics-base/{repo}/tree/\3\4">\1</a>'
+            set-for-matrix: true

@@ -1,4 +1,4 @@
-# EPICS V4 C++ Jenkins Release Documentation Job (Release branch)
+# EPICS V4 C++ Jenkins Specific Documentation Job
 #
 # Jenkins Job Builder configuration template
 #
@@ -7,16 +7,14 @@
 # All rights reserved. Use is subject to license terms.
 
 - job-template:
-    name: '{name}_Release-{branch}-Doc'
+    name: '{name}_SpecificDoc'
     defaults: CPP-defaults
 
     project-type: freestyle
     description: |
-        <h2>Generate documentation for {module} ({language}) from its GitHub repo branch
-        <a href="https://github.com/epics-base/{repo}/tree/release/{branch}">release/{branch}</a>.</h2>
+        <h2>Generate documentation for {module} ({language}) from a specific tag in its GitHub repo.</h2>
         {generated-job-warning}
         <p>Generate documentation and deploy the results to SourceForge webspace.</p>
-        <p>Note: Documentation will be uploaded only for tagged versions on the release branch.</p>
 
     logrotate:
         daysToKeep: 60
@@ -24,31 +22,30 @@
         artifactDaysToKeep: 0
         artifactNumToKeep: 0
 
+    parameters:
+        - string:
+            name: TAG
+            description: "Specific git tag to build"
+
     scm:
         - git:
             url: https://github.com/epics-base/{repo}.git
+            shallow-clone: true
             branches:
-                - 'origin/release/{branch}'
+                - 'tags/${{TAG}}'
             skip-tag: true
-
-    triggers:
-        - github
 
     builders:
         - shell: |
-            TAG=$(git describe --tags --match "{branch}.*" --always)
             RELEASE=$(git describe --tags --candidates=0) || true
-            echo [INFO] Git revision $TAG
-            if [ "$TAG" = "$RELEASE" ]; then
-                source jenkins/cloudbees_doc $TAG
+            echo [INFO] Git revision ${{TAG}}
+            if [ "${{TAG}}" = "$RELEASE" ]; then
+                source jenkins/cloudbees_doc ${{TAG}}
             else
                 source jenkins/cloudbees_doc
             fi
 
     publishers:
-        - email:
-            recipients: '{email-notify}'
-            send-to-individuals: true
         - description-setter:
             regexp: .*\[INFO\] Git revision (([^-\s]*)-[0-9]+-g([^\s]*)|([^-\s]*))
             description: 'version <a href="https://github.com/epics-base/{repo}/tree/\3\4">\1</a>'
