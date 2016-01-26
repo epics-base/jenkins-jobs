@@ -7,7 +7,7 @@
 # All rights reserved. Use is subject to license terms.
 
 - job-template:
-    name: '{name}_Specific-Build'
+    name: '{name}_SpecificBuild'
     defaults: CPP-build-defaults
 
     project-type: matrix
@@ -34,8 +34,7 @@
 
     builders:
         - shell: |
-            TAG=$(git describe --tags --match "{branch}.*" --always)
-            echo [INFO] Git revision $TAG
+            echo [INFO] Git revision ${{TAG}}
             source jenkins/cloudbees_build $BASE $USE_MB
 
     publishers:
