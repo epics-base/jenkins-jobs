@@ -52,7 +52,7 @@
 
     publishers:
         - archive:
-            artifacts: 'target/*.jar'
+            artifacts: '**/target/*.jar'
             only-if-success: true
         - email:
             recipients: ''
