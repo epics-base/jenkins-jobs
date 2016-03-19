@@ -14,7 +14,9 @@
     generated-job-warning: |
         <p><i>Automatically generated job. <b>Do not edit using the web interface.</b><br>
         See <a href="https://github.com/epics-base/jenkins-jobs">job generator repository</a>
-        for details.</i></p>
+        for details.<br>
+        Use the <a href="https://github.com/epics-base/jenkins-jobs/issues">issue tracker</a>
+        to report problems.</i></p>
     language: 'Java/Maven'
 
     properties:

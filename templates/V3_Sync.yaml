@@ -17,7 +17,9 @@
         <h2>Sync EPICS Base ({branch} series) from LaunchPad to GitHub.</h2>
         <p><i>Automatically generated job. <b>Do not edit using the web interface.</b><br>
         See <a href="https://github.com/epics-base/jenkins-jobs">job generator repository</a>
-        for details.</i></p>
+        for details.<br>
+        Use the <a href="https://github.com/epics-base/jenkins-jobs/issues">issue tracker</a>
+        to report problems.</i></p>
         <p>Imports EPICS {branch} from its LaunchPad bzr repository, converting it to git
         using <a href="https://github.com/felipec/git-remote-bzr">git-remote-bzr</a>, then
         pushes to the appropriate branch of {gh-repo} on GitHub.</p>
