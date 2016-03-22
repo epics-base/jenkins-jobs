@@ -1,0 +1,39 @@
+# EPICS V4 C++11 Jenkins Build Job
+#
+# Jenkins Job Builder configuration template
+#
+# Author: Ralph Lange <ralph.lange@gmx.de>
+# Copyright (C) 2016 ITER Organization.
+# All rights reserved. Use is subject to license terms.
+
+- job-template:
+    name: '{name}_CPP11-Build'
+    defaults: CPP-build-defaults
+
+    project-type: matrix
+    description: |
+        <h2>Build {module} ({language}) from its GitHub repo.</h2>
+        <p>Compile-only job, using the C++11 standards.</p>
+        {generated-job-warning}
+
+    base_axis:
+        - 3.16.DEV
+
+    scm:
+        - git:
+            url: https://github.com/epics-base/{repo}.git
+            branches:
+                - '*/master'
+
+    triggers:
+        - github
+
+    builders:
+        - shell: |
+            echo "OP_SYS_CXXFLAGS += -std=c++11" > configure/CONFIG_SITE.Common.linux-x86_64
+            source jenkins/cloudbees_build $BASE $USE_MB
+
+    publishers:
+        - email:
+            recipients: '{email-notify}'
+            send-to-individuals: true

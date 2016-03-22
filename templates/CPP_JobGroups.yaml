@@ -12,6 +12,8 @@
     jobs:
         - '{name}_Build':
             allow-no-artifact: false
+        - '{name}_CPP11-Build':
+            allow-no-artifact: true
         - '{name}_PullRequests'
         - '{name}_Doc'
         - '{name}_SpecificBuild'
@@ -22,6 +24,8 @@
     name: '{name}-prod-jobs'
     jobs:
         - '{name}_Build':
+            allow-no-artifact: true
+        - '{name}_CPP11-Build':
             allow-no-artifact: true
         - '{name}_PullRequests'
 
