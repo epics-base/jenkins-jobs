@@ -1,0 +1,35 @@
+# EPICS Extensions Java Jenkins Jobs (aka job builder projects) on CloudBees
+#
+# Jenkins Job Builder configuration
+#
+# Author: Ralph Lange <ralph.lange@gmx.de>
+# Copyright (C) 2016 ITER Organization.
+# All rights reserved. Use is subject to license terms.
+
+- job-group:
+    name: 'ext-{name}-build-jobs'
+    gh-owner: epics-extensions
+    jobs:
+        - 'ext-{name}-{branch}-build':
+            branch: master
+        - 'ext-{name}-{branch}-distribution':
+            branch: master
+        - 'ext-{name}-pr-build'
+
+- job-group:
+    name: 'ext-{name}-site-jobs'
+    gh-owner: epics-extensions
+    jobs:
+        - 'ext-{name}-{branch}-site':
+            branch: master
+
+- project:
+    name: 'VisualDCT'
+    group-id: 'com.cosylab.vdct'
+    artifact-id: '{name}'
+    repo: '{name}'
+    email-notify: 'matej.sekoranja@cosylab.com ralph.lange@gmx.de'
+    jobs:
+        - 'ext-{name}-build-jobs':
+            maven-goals: 'verify'
+        - 'ext-{name}-site-jobs'

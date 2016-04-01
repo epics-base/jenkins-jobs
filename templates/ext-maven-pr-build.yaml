@@ -1,0 +1,56 @@
+# EPICS Extensions Java/Maven GitHub Pull-Request Build Jenkins Job
+# Jenkins Job Builder configuration template
+#
+# Author: Ralph Lange <ralph.lange@gmx.de>
+# Copyright (C) 2016 ITER Organization.
+# All rights reserved. Use is subject to license terms.
+
+- job-template:
+    name: 'ext-{name}-pr-build'
+    defaults: maven-build-defaults
+
+    project-type: maven
+    description: |
+        <h2>Build {name} ({language}) - pull requests - from GitHub.</h2>
+        {generated-job-warning}
+
+    maven:
+        ignore-upstream-changes: true
+        goals: 'clean verify'
+        root-module:
+            group-id: '{group-id}'
+            artifact-id: '{artifact-id}'
+        settings: /private/openepics/settings.xml
+
+    logrotate:
+        daysToKeep: 60
+        numToKeep: -1
+        artifactDaysToKeep: 15
+        artifactNumToKeep: 2
+
+    scm:
+        - git:
+            url: https://github.com/{gh-owner}/{repo}.git
+            refspec: '+refs/pull/*:refs/remotes/origin/pr/*'
+            branches:
+                - '${{sha1}}'
+
+    triggers:
+        - github-pull-request:
+            admin-list:
+                - msekoranja
+                - ralphlange
+                - anjohnson
+            org-list:
+                - epics-extensions
+            github-hooks: true
+            white-list-target-branches:
+                - master
+
+    publishers:
+        - archive:
+            artifacts: '**/target/*.jar'
+            only-if-success: true
+        - email:
+            recipients: ''
+            send-to-individuals: true

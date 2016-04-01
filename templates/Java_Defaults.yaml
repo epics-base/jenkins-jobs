@@ -3,7 +3,7 @@
 # Jenkins Job Builder configuration template
 #
 # Author: Ralph Lange <ralph.lange@gmx.de>
-# Copyright (C) 2015 ITER Organization.
+# Copyright (C) 2015,2016 ITER Organization.
 # All rights reserved. Use is subject to license terms.
 
 - defaults:
@@ -36,4 +36,45 @@
             group-id: org.epics
             artifact-id: '{module}'
         settings: /private/openepics/settings.xml
-        
+
+- defaults:
+    name: maven-build-defaults
+
+    generated-job-warning: |
+        <p><i>Automatically generated job. <b>Do not edit using the web interface.</b><br>
+        See <a href="https://github.com/epics-base/jenkins-jobs">job generator repository</a>
+        for details.<br>
+        Use the <a href="https://github.com/epics-base/jenkins-jobs/issues">issue tracker</a>
+        to report problems.</i></p>
+    language: 'Java/Maven'
+
+    properties:
+        - github:
+            url: https://github.com/{gh-owner}/{repo}/
+
+    logrotate:
+        daysToKeep: 60
+        numToKeep: -1
+        artifactDaysToKeep: -1
+        artifactNumToKeep: 20
+
+    block-upstream: true
+
+    scm:
+        - git:
+            url: https://github.com/{gh-owner}/{repo}.git
+            branches:
+                - '*/{branch}'
+
+    maven:
+        ignore-upstream-changes: false
+        goals: 'clean {maven-goals}'
+        root-module:
+            group-id: '{group-id}'
+            artifact-id: '{artifact-id}'
+        settings: /private/openepics/settings.xml
+
+    wrappers:
+        - raw:
+            xml: |
+                <com.cloudbees.jenkins.forge.WebDavMounter plugin="cloudbees-forge-plugin"/>
