@@ -14,6 +14,7 @@
             branch: master
         - 'ext-{name}-{branch}-distribution':
             branch: master
+            maven-goals: 'verify site assembly:single'
         - 'ext-{name}-pr-build'
 
 - job-group:

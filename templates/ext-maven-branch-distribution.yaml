@@ -42,8 +42,6 @@
                     <numberOfReleaseBuildsToKeep>1</numberOfReleaseBuildsToKeep>
                 </org.jvnet.hudson.plugins.m2release.M2ReleaseBuildWrapper>
 
-    maven-goals: 'verify site assembly:single'
-
     publishers:
         - archive:
             artifacts: 'target/*.jar,target/*-distribution.*'
