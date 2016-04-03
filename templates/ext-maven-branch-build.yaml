@@ -22,6 +22,7 @@
         - archive:
             artifacts: '**/target/*.jar'
             only-if-success: true
+        - github-notifier
         - email:
             recipients: '{email-notify}'
             send-to-individuals: true
