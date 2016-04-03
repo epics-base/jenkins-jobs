@@ -14,6 +14,7 @@
     project-type: maven
     description: |
         <h2>Build distribution of {name} ({language}) - {branch} branch - from its GitHub repo.</h2>
+        <p>This job can do Maven releases, including the necessary POM changes and repo tagging.</p>
         {generated-job-warning}
 
     scm:
@@ -34,8 +35,8 @@
                     <scmUserEnvVar></scmUserEnvVar>
                     <scmPasswordEnvVar></scmPasswordEnvVar>
                     <releaseEnvVar>IS_M2RELEASEBUILD</releaseEnvVar>
-                    <releaseGoals>-Dresume=false release:prepare release:perform</releaseGoals>
-                    <dryRunGoals>-Dresume=false -DdryRun=true release:prepare</dryRunGoals>
+                    <releaseGoals>-Dresume=false release:prepare release:perform -Dgoals="{release-perform-goals}"</releaseGoals>
+                    <dryRunGoals>-Dresume=false -DdryRun=true release:prepare {release-dryrun-extras}</dryRunGoals>
                     <selectCustomScmCommentPrefix>false</selectCustomScmCommentPrefix>
                     <selectAppendHudsonUsername>false</selectAppendHudsonUsername>
                     <selectScmCredentials>false</selectScmCredentials>
@@ -46,6 +47,3 @@
         - archive:
             artifacts: 'target/*.jar,target/*-distribution.*'
             only-if-success: true
-        - email:
-            recipients: '{email-notify}'
-            send-to-individuals: true

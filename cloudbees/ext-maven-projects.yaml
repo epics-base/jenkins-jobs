@@ -14,7 +14,7 @@
             branch: master
         - 'ext-{name}-{branch}-distribution':
             branch: master
-            maven-goals: 'verify site assembly:single'
+            maven-goals: 'install site assembly:single'
         - 'ext-{name}-pr-build'
 
 - job-group:
@@ -30,6 +30,8 @@
     artifact-id: '{name}'
     repo: '{name}'
     email-notify: 'matej.sekoranja@cosylab.com ralph.lange@gmx.de'
+    release-dryrun-extras: 'site assembly:single scm-publish:publish-scm -Dscmpublish.dryRun=true'
+    release-perform-goals: 'deploy site assembly:single scm-publish:publish-scm'
     jobs:
         - 'ext-{name}-build-jobs':
             maven-goals: 'verify'
