@@ -45,5 +45,5 @@
 
     publishers:
         - archive:
-            artifacts: 'target/*.jar,target/*-distribution.*'
+            artifacts: 'target/checkout/target/*.jar,target/checkout/target/*-distribution.*'
             only-if-success: true
