@@ -31,7 +31,7 @@
     repo: '{name}'
     email-notify: 'matej.sekoranja@cosylab.com ralph.lange@gmx.de'
     release-dryrun-extras: 'site assembly:single scm-publish:publish-scm -Dscmpublish.dryRun=true'
-    release-perform-goals: 'deploy site assembly:single scm-publish:publish-scm'
+    release-perform-goals: 'verify site assembly:single scm-publish:publish-scm'
     jobs:
         - 'ext-{name}-build-jobs':
             maven-goals: 'verify'
