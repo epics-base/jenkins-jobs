@@ -28,6 +28,77 @@
         artifactDaysToKeep: 15
         artifactNumToKeep: 2
 
+    parameters:
+        - string:
+            name: ghprbActualCommit
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbActualCommitAuthor
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbActualCommitAuthorEmail
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbAuthorRepoGitUrl
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbCommentBody
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbCredentialsId
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbGhRepository
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbPullAuthorEmail
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbPullAuthorLogin
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbPullAuthorLoginMention
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbPullDescription
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbPullId
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbPullLink
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbPullLongDescription
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbPullTitle
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbSourceBranch
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbTargetBranch
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbTriggerAuthor
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbTriggerAuthorEmail
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbTriggerAuthorLogin
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: ghprbTriggerAuthorLoginMention
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: GIT_BRANCH
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+        - string:
+            name: sha1
+            description: "<b>Do not set</b>&nbsp;-&nbsp;<em>workaround for broken PR Builder plugin</em>"
+
     scm:
         - git:
             url: https://github.com/{gh-owner}/{repo}.git
