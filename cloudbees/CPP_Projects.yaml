@@ -3,50 +3,53 @@
 # Jenkins Job Builder configuration
 #
 # Author: Ralph Lange <ralph.lange@gmx.de>
-# Copyright (C) 2015 ITER Organization.
+# Copyright (C) 2015,2016 ITER Organization.
 # All rights reserved. Use is subject to license terms.
 
 - project:
-    name: pvCommonCPP
-    repo: '{name}'
+    name: pvCommonCPP-45
+    modulename: pvCommonCPP
+    repo: '{modulename}'
     module: pvCommon
     extra-description: ', build with Micro-Benchmarks'
     microbench_axis:
         - MB_YES
     jobs:
-        - '{name}-lib-jobs':
+        - '{modulename}-lib-jobs':
             downstream: 'pvAccessCPP_Build,normativeTypesCPP_Build,pvaSrvCPP_Build,exampleCPP_Build'
-        - '{name}-lib-release-branch-jobs':
+        - '{modulename}-lib-release-branch-jobs':
             branch:
                 - '4.0'
                 - '4.1':
                     downstream: 'pvAccessCPP_Release-4.1-Build,normativeTypesCPP_Release-5.0-Build,pvaSrvCPP_Release-0.11-Build,exampleCPP_Release-4.1-Build'
 
 - project:
-    name: pvDataCPP
-    repo: '{name}'
+    name: pvDataCPP-45
+    modulename: pvDataCPP
+    repo: '{modulename}'
     module: pvData
     jobs:
-        - '{name}-lib-jobs':
+        - '{modulename}-lib-jobs':
             downstream: 'pvAccessCPP_Build,normativeTypesCPP_Build,pvaSrvCPP_Build,pvDatabaseCPP_Build,exampleCPP_Build,pvaPy_Build'
-        - '{name}-lib-release-branch-jobs':
+        - '{modulename}-lib-release-branch-jobs':
             branch:
                 - '4.0'
                 - '5.0':
                     downstream: 'pvAccessCPP_Release-4.1-Build,normativeTypesCPP_Release-5.0-Build,pvaSrvCPP_Release-0.11-Build,pvDatabaseCPP_Release-4.1-Build,exampleCPP_Release-4.1-Build,pvaPy_Release-0.5-Build'
 
 - project:
-    name: pvAccessCPP
-    repo: '{name}'
+    name: pvAccessCPP-45
+    modulename: pvAccessCPP
+    repo: '{modulename}'
     module: pvAccess
     extra-description: ', with or without Micro-Benchmarks'
     microbench_axis:
         - MB_YES
         - MB_NO
     jobs:
-        - '{name}-lib-jobs':
+        - '{modulename}-lib-jobs':
             downstream: 'pvaSrvCPP_Build,exampleCPP_Build,pvDatabaseCPP_Build,pvaClientCPP_Build,pvaPy_Build'
-        - '{name}-lib-release-branch-jobs':
+        - '{modulename}-lib-release-branch-jobs':
             branch:
                 - '4.0':
                     extra-description: ', build with Micro-Benchmarks'
@@ -57,13 +60,14 @@
                     downstream: 'pvaSrvCPP_Release-0.11-Build,exampleCPP_Release-4.1-Build,pvDatabaseCPP_Release-4.1-Build,pvaClientCPP_Release-4.1-Build,pvaPy_Release-0.5-Build'
 
 - project:
-    name: normativeTypesCPP
-    repo: '{name}'
+    name: normativeTypesCPP-45
+    modulename: normativeTypesCPP
+    repo: '{modulename}'
     module: normativeTypes
     jobs:
-        - '{name}-lib-jobs':
+        - '{modulename}-lib-jobs':
             downstream: 'pvaClientCPP_Build,pvaPy_Build'
-        - '{name}-lib-release-branch-jobs':
+        - '{modulename}-lib-release-branch-jobs':
             branch:
                 - '4.0':
                     extra-description: ', build with Micro-Benchmarks'
@@ -73,36 +77,39 @@
                     downstream: 'pvaClientCPP_Release-4.1-Build,pvaPy_Release-0.5-Build'
 
 - project:
-    name: pvaClientCPP
-    repo: '{name}'
+    name: pvaClientCPP-45
+    modulename: pvaClientCPP
+    repo: '{modulename}'
     module: pvaClient
     jobs:
-        - '{name}-lib-jobs':
+        - '{modulename}-lib-jobs':
             downstream: 'pvaPy_Build'
-        - '{name}-lib-release-branch-jobs':
+        - '{modulename}-lib-release-branch-jobs':
             branch:
                 - '4.1':
                     downstream: 'pvaPy_Release-0.5-Build'
 
 - project:
-    name: pvaPy
-    repo: '{name}'
-    module: '{name}'
+    name: pvaPy-45
+    modulename: pvaPy
+    repo: '{modulename}'
+    module: '{modulename}'
     language: 'C++/Python'
     jobs:
-        - '{name}-lib-jobs'
-        - '{name}-lib-release-branch-jobs':
+        - '{modulename}-lib-jobs'
+        - '{modulename}-lib-release-branch-jobs':
             branch:
                 - '0.5'
 
 - project:
-    name: pvaSrvCPP
+    name: pvaSrvCPP-45
+    modulename: pvaSrvCPP
     repo: pvaSrv
     module: pvaSrv
     jobs:
-        - '{name}-lib-jobs':
+        - '{modulename}-lib-jobs':
             downstream: 'pvDatabaseCPP_Build'
-        - '{name}-lib-release-branch-jobs':
+        - '{modulename}-lib-release-branch-jobs':
             branch:
                 - '0.10':
                     extra-description: ' (release 0.10 only against Base 3.14), build with Micro-Benchmarks'
@@ -115,12 +122,13 @@
                     downstream: 'pvDatabaseCPP_Release-4.1-Build'
 
 - project:
-    name: pvDatabaseCPP
-    repo: '{name}'
+    name: pvDatabaseCPP-45
+    modulename: pvDatabaseCPP
+    repo: '{modulename}'
     module: pvDatabase
     jobs:
-        - '{name}-lib-jobs'
-        - '{name}-lib-release-branch-jobs':
+        - '{modulename}-lib-jobs'
+        - '{modulename}-lib-release-branch-jobs':
             branch:
                 - '4.0':
                     extra-description: ' (release 4.0 only against Base 3.14), build with Micro-Benchmarks'
@@ -131,13 +139,14 @@
                 - '4.1'
 
 - project:
-    name: exampleCPP
-    repo: '{name}'
+    name: exampleCPP-45
+    modulename: exampleCPP
+    repo: '{modulename}'
     module: example
     allow-no-artifact: true
     jobs:
-        - '{name}-prod-jobs'
-        - '{name}-prod-release-branch-jobs':
+        - '{modulename}-prod-jobs'
+        - '{modulename}-prod-release-branch-jobs':
             branch:
                 - '4.0':
                     extra-description: ', build with Micro-Benchmarks'

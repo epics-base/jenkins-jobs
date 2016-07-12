@@ -7,7 +7,7 @@
 # All rights reserved. Use is subject to license terms.
 
 - job-template:
-    name: '{name}_SpecificBuild'
+    name: '{modulename}_SpecificBuild'
     defaults: CPP-build-defaults
 
     project-type: matrix

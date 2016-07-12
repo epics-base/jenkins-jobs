@@ -7,7 +7,7 @@
 # All rights reserved. Use is subject to license terms.
 
 - job-template:
-    name: '{name}_Release-{branch}-Build'
+    name: '{modulename}_Release-{branch}-Build'
     defaults: CPP-build-defaults
 
     project-type: matrix

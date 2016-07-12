@@ -8,37 +8,37 @@
 
 # Library build: must create a binary tar, and have a Doxygen job
 - job-group:
-    name: '{name}-lib-jobs'
+    name: '{modulename}-lib-jobs'
     jobs:
-        - '{name}_Build':
+        - '{modulename}_Build':
             allow-no-artifact: false
-        - '{name}_CPP11-Build':
+        - '{modulename}_CPP11-Build':
             allow-no-artifact: true
-        - '{name}_PullRequests'
-        - '{name}_Doc'
-        - '{name}_SpecificBuild'
-        - '{name}_SpecificDoc'
+        - '{modulename}_PullRequests'
+        - '{modulename}_Doc'
+        - '{modulename}_SpecificBuild'
+        - '{modulename}_SpecificDoc'
 
 # Product build: no binary tar created, and no API documentation
 - job-group:
-    name: '{name}-prod-jobs'
+    name: '{modulename}-prod-jobs'
     jobs:
-        - '{name}_Build':
+        - '{modulename}_Build':
             allow-no-artifact: true
-        - '{name}_CPP11-Build':
+        - '{modulename}_CPP11-Build':
             allow-no-artifact: true
-        - '{name}_PullRequests'
+        - '{modulename}_PullRequests'
 
 # Release branch lib build
 - job-group:
-    name: '{name}-lib-release-branch-jobs'
+    name: '{modulename}-lib-release-branch-jobs'
     jobs:
-        - '{name}_Release-{branch}-Build'
-        - '{name}_Release-{branch}-Doc'
+        - '{modulename}_Release-{branch}-Build'
+        - '{modulename}_Release-{branch}-Doc'
 
 # Release branch product build: no API documentation
 - job-group:
-    name: '{name}-prod-release-branch-jobs'
+    name: '{modulename}-prod-release-branch-jobs'
     jobs:
-        - '{name}_Release-{branch}-Build':
+        - '{modulename}_Release-{branch}-Build':
             allow-no-artifact: true

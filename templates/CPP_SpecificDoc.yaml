@@ -7,7 +7,7 @@
 # All rights reserved. Use is subject to license terms.
 
 - job-template:
-    name: '{name}_SpecificDoc'
+    name: '{modulename}_SpecificDoc'
     defaults: CPP-defaults
 
     project-type: freestyle
