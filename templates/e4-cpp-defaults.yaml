@@ -1,0 +1,85 @@
+# EPICS V4 C++ Jenkins Jobs
+#
+# Jenkins Job Builder configuration template
+#
+# Author: Ralph Lange <ralph.lange@gmx.de>
+# Copyright (C) 2016 ITER Organization.
+# All rights reserved. Use is subject to license terms.
+
+###########################################################################################
+# defaults for build jobs (4.6.0 and up)
+
+- defaults:
+    name: cpp-build-defaults
+
+    language: 'C++'
+    allow-no-artifact: false
+
+    base_axis:
+        - 3.14.12.5
+        - 3.15.4
+        - 3.16.DEV
+
+    microbench_axis:
+        - NO_MICROBENCH
+
+    logrotate:
+        daysToKeep: 60
+        numToKeep: -1
+        artifactDaysToKeep: -1
+        artifactNumToKeep: 20
+
+    generated-job-warning: |
+        <p><i>Automatically generated job. <b>Do not edit using the web interface.</b><br>
+        See <a href="https://github.com/epics-base/jenkins-jobs">job generator repository</a>
+        for details.<br>
+        Use the <a href="https://github.com/epics-base/jenkins-jobs/issues">issue tracker</a>
+        to report problems with this job.</i></p>
+
+#    email-notify: epics-pvdata-devel@lists.sourceforge.net
+    email-notify: ralph.lange@gmx.de
+
+    properties:
+        - github:
+            url: https://github.com/epics-base/{repo}/
+
+    axes:
+        - axis:
+            type: user-defined
+            name: BASE
+            values: '{obj:base_axis}'
+        - axis:
+            type: user-defined
+            name: MB
+            values: '{obj:microbench_axis}'
+
+    builders:
+        - shell: source jenkins/cloudbees_build
+
+- defaults:
+    name: cpp-doc-defaults
+
+    language: 'C++'
+
+    logrotate:
+        daysToKeep: 60
+        numToKeep: -1
+        artifactDaysToKeep: 0
+        artifactNumToKeep: 0
+
+    generated-job-warning: |
+        <p><i>Automatically generated job. <b>Do not edit using the web interface.</b><br>
+        See <a href="https://github.com/epics-base/jenkins-jobs">job generator repository</a>
+        for details.<br>
+        Use the <a href="https://github.com/epics-base/jenkins-jobs/issues">issue tracker</a>
+        to report problems with this job.</i></p>
+
+#    email-notify: epics-pvdata-devel@lists.sourceforge.net
+    email-notify: ralph.lange@gmx.de
+
+    properties:
+        - github:
+            url: https://github.com/epics-base/{repo}/
+
+    builders:
+        - shell: source jenkins/cloudbees_doc

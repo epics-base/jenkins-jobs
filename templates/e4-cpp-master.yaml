@@ -1,0 +1,183 @@
+# EPICS V4 C++ Jenkins Build and Doc Jobs
+#
+# Jenkins Job Builder configuration template
+#
+# Author: Ralph Lange <ralph.lange@gmx.de>
+# Copyright (C) 2016 ITER Organization.
+# All rights reserved. Use is subject to license terms.
+
+#######################################################
+# Job-Groups
+
+# Library build: must create a binary tar, and have a Doxygen job
+- job-group:
+    name: 'e4-cpp-{module}-master-lib-jobs'
+    jobs:
+        - 'e4-cpp-{module}-master-build'
+        - 'e4-cpp-{module}-master-doc'
+        - 'e4-cpp-{module}-master-c++11-build'
+        - 'e4-cpp-{module}-master-pr-build'
+
+# Product build: no binary tar created, and no API documentation
+- job-group:
+    name: 'e4-cpp-{module}-master-prod-jobs'
+    jobs:
+        - 'e4-cpp-{module}-master-build':
+            allow-no-artifact: true
+        - 'e4-cpp-{module}-master-c++11-build':
+            allow-no-artifact: true
+        - 'e4-cpp-{module}-master-pr-build'
+
+
+#######################################################
+# Build the master branch
+
+- job-template:
+    name: 'e4-cpp-{module}-master-build'
+    defaults: cpp-build-defaults
+
+    project-type: matrix
+    description: |
+        <h2>Build {module} ({language}) from its GitHub repo.</h2>
+        {generated-job-warning}
+        <p>Matrix-Configuration - build against different versions of
+        Base{extra-description}.</p>
+
+    block-upstream: true
+
+    scm:
+        - git:
+            url: https://github.com/epics-base/{repo}.git
+            branches:
+                - '*/master'
+
+    triggers:
+        - github
+
+    publishers:
+        - archive:
+            artifacts: '{module}.CB-dist.tar.gz'
+            allow-empty: '{allow-no-artifact}'
+            only-if-success: true
+        - trigger:
+            project: 'e4-cpp-{module}-master-doc,e4-cpp-{module}-master-c++11-build,{downstream}'
+        - email:
+            recipients: '{email-notify}'
+            send-to-individuals: true
+
+#######################################################
+# Create the documentation of the master branch
+
+- job-template:
+    name: 'e4-cpp-{module}-master-doc'
+    defaults: cpp-doc-defaults
+
+    project-type: freestyle
+    description: |
+        <h2>Generate documentation for {module} ({language}) from its GitHub repo.</h2>
+        {generated-job-warning}
+        <p>Generate documentation and deploy the results to SourceForge webspace.</p>
+
+    block-upstream: true
+
+    scm:
+        - git:
+            url: https://github.com/epics-base/{repo}.git
+            branches:
+                - '*/master'
+            shallow-clone: true
+
+# Avoid the default github trigger
+    triggers:
+        - script
+
+    builders:
+        - shell: PUBLISH=tip source jenkins/cloudbees_doc
+
+    publishers:
+        - email:
+            recipients: '{email-notify}'
+            send-to-individuals: true
+
+#######################################################
+# C++11 - Build of the master branch
+
+- job-template:
+    name: 'e4-cpp-{module}-master-c++11-build'
+    defaults: cpp-build-defaults
+
+    project-type: matrix
+    description: |
+        <h2>Build {module} ({language}) from its GitHub repo.</h2>
+        <p>Compile-only job, using the C++11 standards.</p>
+        {generated-job-warning}
+
+    base_axis:
+        - 3.16.DEV
+
+    block-upstream: true
+
+    scm:
+        - git:
+            url: https://github.com/epics-base/{repo}.git
+            branches:
+                - '*/master'
+
+# Avoid the default github trigger
+    triggers:
+        - script
+
+    builders:
+        - shell: |
+            echo "OP_SYS_CXXFLAGS += -std=c++11" > configure/CONFIG_SITE.Common.linux-x86_64
+            source jenkins/cloudbees_build
+
+    publishers:
+        - email:
+            recipients: '{email-notify}'
+            send-to-individuals: true
+
+#######################################################
+# Builds of Pull Requests against the master branch
+
+- job-template:
+    name: 'e4-cpp-{module}-master-pr-build'
+    defaults: cpp-build-defaults
+
+    project-type: matrix
+    description: |
+        <h2>Build {module} ({language}) Pull Requests from GitHub.</h2>
+        {generated-job-warning}
+        <p><i>Matrix-Configuration version - build against different versions of 
+        Base{extra-description}.</i></p>
+
+    logrotate:
+        daysToKeep: 60
+        numToKeep: -1
+        artifactDaysToKeep: 15
+        artifactNumToKeep: -1
+
+    scm:
+        - git:
+            url: https://github.com/epics-base/{repo}.git
+            refspec: '+refs/pull/*:refs/remotes/origin/pr/*'
+            branches:
+                - '${{sha1}}'
+
+    triggers:
+        - github-pull-request:
+            admin-list:
+                - msekoranja
+                - mrkraimer
+                - ralphlange
+                - anjohnson
+            org-list:
+                - epics-base
+            github-hooks: true
+            white-list-target-branches:
+                - master
+
+    publishers:
+        - email:
+            recipients: ''
+            send-to-individuals: true

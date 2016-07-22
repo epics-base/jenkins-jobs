@@ -1,0 +1,119 @@
+# EPICS V4 C++ Jenkins Build and Doc Jobs
+#
+# Jenkins Job Builder configuration template
+#
+# Author: Ralph Lange <ralph.lange@gmx.de>
+# Copyright (C) 2016 ITER Organization.
+# All rights reserved. Use is subject to license terms.
+
+#######################################################
+# Job-Groups
+
+# Release branch library build: must create a binary tar, and have a Doxygen job
+- job-group:
+    name: 'e4-cpp-{module}-release-lib-jobs'
+    jobs:
+        - 'e4-cpp-{module}-release-{branch}-build'
+        - 'e4-cpp-{module}-release-{branch}-doc'
+
+# Release branch product build: no binary tar created, and no API documentation
+- job-group:
+    name: 'e4-cpp-{module}-release-prod-jobs'
+    jobs:
+        - 'e4-cpp-{module}-release-{branch}-build':
+            allow-no-artifact: true
+
+#######################################################
+# Build the specified release branch
+
+- job-template:
+    name: 'e4-cpp-{module}-release-{branch}-build'
+    defaults: cpp-build-defaults
+
+    project-type: matrix
+    description: |
+        <h2>Build {module} ({language}) from its GitHub repo branch
+        <a href="https://github.com/epics-base/{repo}/tree/release/{branch}">release/{branch}</a>.</h2>
+        {generated-job-warning}
+        <p>Matrix-Configuration version - build against different versions of
+        Base{extra-description}.</p>
+
+    block-upstream: true
+
+    scm:
+        - git:
+            url: https://github.com/epics-base/{repo}.git
+            branches:
+                - 'origin/release/{branch}'
+
+    triggers:
+        - github
+
+    builders:
+        - shell: |
+            TAG=$(git describe --tags --match "{branch}.*" --always)
+            echo [INFO] Git revision $TAG
+            source jenkins/cloudbees_build $BASE $USE_MB
+
+    publishers:
+        - archive:
+            artifacts: '{module}.CB-dist.tar.gz'
+            allow-empty: '{allow-no-artifact}'
+            only-if-success: true
+        - description-setter:
+            regexp: .*\[INFO\] Git revision (([^-\s]*)-[0-9]+-g([^\s]*)|([^-\s]*))
+            description: 'version <a href="https://github.com/epics-base/{repo}/tree/\3\4">\1</a>'
+            set-for-matrix: true
+        - trigger:
+            project: '{downstream}'
+        - email:
+            recipients: '{email-notify}'
+            send-to-individuals: true
+
+#######################################################
+# Create the documentation of the specified release branch
+
+- job-template:
+    name: 'e4-cpp-{module}-release-{branch}-doc'
+    defaults: cpp-doc-defaults
+
+    project-type: freestyle
+    description: |
+        <h2>Generate documentation for {module} ({language}) from its GitHub repo branch
+        <a href="https://github.com/epics-base/{repo}/tree/release/{branch}">release/{branch}</a>.</h2>
+        {generated-job-warning}
+        <p>Generate documentation and deploy the results to SourceForge webspace.</p>
+        <p>Note: Documentation will be uploaded only for tagged versions on the release branch.</p>
+
+    block-upstream: true
+
+    scm:
+        - git:
+            url: https://github.com/epics-base/{repo}.git
+            branches:
+                - 'origin/release/{branch}'
+            skip-tag: true
+
+# Avoid the default github trigger
+    triggers:
+        - script
+
+    builders:
+        - shell: |
+            TAG=$(git describe --tags --match "{branch}.*" --always)
+            RELEASE=$(git describe --tags --candidates=0) || true
+            echo [INFO] Git revision $TAG
+            if [ "$TAG" = "$RELEASE" ]; then
+                BRANCH=release-{branch} PUBLISH=$TAG source jenkins/cloudbees_doc
+            else
+                BRANCH=release-{branch} source jenkins/cloudbees_doc
+            fi
+
+    publishers:
+        - email:
+            recipients: '{email-notify}'
+            send-to-individuals: true
+        - description-setter:
+            regexp: .*\[INFO\] Git revision (([^-\s]*)-[0-9]+-g([^\s]*)|([^-\s]*))
+            description: 'version <a href="https://github.com/epics-base/{repo}/tree/\3\4">\1</a>'
+            set-for-matrix: true
