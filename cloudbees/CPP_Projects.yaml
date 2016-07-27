@@ -15,8 +15,8 @@
     microbench_axis:
         - MB_YES
     jobs:
-        - '{modulename}-lib-jobs':
-            downstream: 'pvAccessCPP_Build,normativeTypesCPP_Build,pvaSrvCPP_Build,exampleCPP_Build'
+#        - '{modulename}-lib-jobs':
+#            downstream: 'pvAccessCPP_Build,normativeTypesCPP_Build,pvaSrvCPP_Build,exampleCPP_Build'
         - '{modulename}-lib-release-branch-jobs':
             branch:
                 - '4.0'
@@ -29,8 +29,8 @@
     repo: '{modulename}'
     module: pvData
     jobs:
-        - '{modulename}-lib-jobs':
-            downstream: 'pvAccessCPP_Build,normativeTypesCPP_Build,pvaSrvCPP_Build,pvDatabaseCPP_Build,exampleCPP_Build,pvaPy_Build'
+#        - '{modulename}-lib-jobs':
+#            downstream: 'pvAccessCPP_Build,normativeTypesCPP_Build,pvaSrvCPP_Build,pvDatabaseCPP_Build,exampleCPP_Build,pvaPy_Build'
         - '{modulename}-lib-release-branch-jobs':
             branch:
                 - '4.0'
@@ -47,8 +47,8 @@
         - MB_YES
         - MB_NO
     jobs:
-        - '{modulename}-lib-jobs':
-            downstream: 'pvaSrvCPP_Build,exampleCPP_Build,pvDatabaseCPP_Build,pvaClientCPP_Build,pvaPy_Build'
+#        - '{modulename}-lib-jobs':
+#            downstream: 'pvaSrvCPP_Build,exampleCPP_Build,pvDatabaseCPP_Build,pvaClientCPP_Build,pvaPy_Build'
         - '{modulename}-lib-release-branch-jobs':
             branch:
                 - '4.0':
@@ -65,8 +65,8 @@
     repo: '{modulename}'
     module: normativeTypes
     jobs:
-        - '{modulename}-lib-jobs':
-            downstream: 'pvaClientCPP_Build,pvaPy_Build'
+#        - '{modulename}-lib-jobs':
+#            downstream: 'pvaClientCPP_Build,pvaPy_Build'
         - '{modulename}-lib-release-branch-jobs':
             branch:
                 - '4.0':
@@ -82,8 +82,8 @@
     repo: '{modulename}'
     module: pvaClient
     jobs:
-        - '{modulename}-lib-jobs':
-            downstream: 'pvaPy_Build'
+#        - '{modulename}-lib-jobs':
+#            downstream: 'pvaPy_Build'
         - '{modulename}-lib-release-branch-jobs':
             branch:
                 - '4.1':
@@ -96,7 +96,7 @@
     module: '{modulename}'
     language: 'C++/Python'
     jobs:
-        - '{modulename}-lib-jobs'
+#        - '{modulename}-lib-jobs'
         - '{modulename}-lib-release-branch-jobs':
             branch:
                 - '0.5'
@@ -107,8 +107,8 @@
     repo: pvaSrv
     module: pvaSrv
     jobs:
-        - '{modulename}-lib-jobs':
-            downstream: 'pvDatabaseCPP_Build'
+#        - '{modulename}-lib-jobs':
+#            downstream: 'pvDatabaseCPP_Build'
         - '{modulename}-lib-release-branch-jobs':
             branch:
                 - '0.10':
@@ -127,7 +127,7 @@
     repo: '{modulename}'
     module: pvDatabase
     jobs:
-        - '{modulename}-lib-jobs'
+#        - '{modulename}-lib-jobs'
         - '{modulename}-lib-release-branch-jobs':
             branch:
                 - '4.0':
@@ -145,7 +145,7 @@
     module: example
     allow-no-artifact: true
     jobs:
-        - '{modulename}-prod-jobs'
+#        - '{modulename}-prod-jobs'
         - '{modulename}-prod-release-branch-jobs':
             branch:
                 - '4.0':
