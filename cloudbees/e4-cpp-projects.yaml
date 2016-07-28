@@ -50,7 +50,7 @@
         - 'e4-cpp-{module}-release-lib-jobs':
             branch:
                 - '5.0':
-                    downstream: ''
+                    downstream: 'e4-cpp-pvaSrv-release-0.12-build'
 
 - project:
     name: normativeTypesCPP
@@ -87,6 +87,10 @@
     jobs:
         - 'e4-cpp-{module}-master-lib-jobs':
             downstream: 'e4-cpp-example-master-build'
+        - 'e4-cpp-{module}-release-lib-jobs':
+            branch:
+                - '0.12':
+                    downstream: ''
 
 - project:
     name: pvDatabaseCPP
