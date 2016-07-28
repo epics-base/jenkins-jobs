@@ -65,7 +65,7 @@
             description: 'version <a href="https://github.com/epics-base/{repo}/tree/\3\4">\1</a>'
             set-for-matrix: true
         - trigger:
-            project: '{downstream}'
+            project: 'e4-cpp-{module}-release-{branch}-doc, {downstream}'
         - email:
             recipients: '{email-notify}'
             send-to-individuals: true
