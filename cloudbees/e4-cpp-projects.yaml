@@ -19,6 +19,10 @@
     jobs:
         - 'e4-cpp-{module}-master-lib-jobs':
             downstream: 'e4-cpp-pvAccess-master-build'
+        - 'e4-cpp-{module}-release-lib-jobs':
+            branch:
+                - '4.2':
+                    downstream: 'e4-cpp-pvAccess-release-5.0-build'
 
 - project:
     name: pvDataCPP
@@ -27,6 +31,10 @@
     jobs:
         - 'e4-cpp-{module}-master-lib-jobs':
             downstream: 'e4-cpp-pvAccess-master-build, e4-cpp-normativeTypes-master-build'
+        - 'e4-cpp-{module}-release-lib-jobs':
+            branch:
+                - '6.0':
+                    downstream: 'e4-cpp-pvAccess-release-5.0-build, e4-cpp-normativeTypes-release-5.1-build'
 
 - project:
     name: pvAccessCPP
@@ -39,6 +47,10 @@
     jobs:
         - 'e4-cpp-{module}-master-lib-jobs':
             downstream: 'e4-cpp-pvaSrv-master-build, e4-cpp-pvaClient-master-build, e4-cpp-pvDatabase-master-build'
+        - 'e4-cpp-{module}-release-lib-jobs':
+            branch:
+                - '5.0':
+                    downstream: ''
 
 - project:
     name: normativeTypesCPP
@@ -47,6 +59,10 @@
     jobs:
         - 'e4-cpp-{module}-master-lib-jobs':
             downstream: 'e4-cpp-pvaClient-master-build'
+        - 'e4-cpp-{module}-release-lib-jobs':
+            branch:
+                - '5.1':
+                    downstream: ''
 
 - project:
     name: pvaClientCPP
