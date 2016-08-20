@@ -73,6 +73,7 @@
             team-domain: 'epics-dev'
             auth-token: 'uO8kmuXxY2TyreLvPR6asWrU'
             room: '#ci'
+            build-server-url: 'https://openepics.ci.cloudbees.com/'
             notify-failure: true
             notify-unstable: true
             notify-back-to-normal: true
@@ -131,6 +132,7 @@
             team-domain: 'epics-dev'
             auth-token: 'uO8kmuXxY2TyreLvPR6asWrU'
             room: '#ci'
+            build-server-url: 'https://openepics.ci.cloudbees.com/'
             notify-failure: true
             notify-unstable: true
             notify-back-to-normal: true
