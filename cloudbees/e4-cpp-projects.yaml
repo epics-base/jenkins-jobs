@@ -50,7 +50,7 @@
         - 'e4-cpp-{module}-release-lib-jobs':
             branch:
                 - '5.0':
-                    downstream: 'e4-cpp-pvaSrv-release-0.12-build'
+                    downstream: 'e4-cpp-pvaSrv-release-0.12-build, e4-cpp-pvaClient-release-4.2-build, e4-cpp-pvDatabase-release-4.2-build'
 
 - project:
     name: normativeTypesCPP
@@ -62,7 +62,7 @@
         - 'e4-cpp-{module}-release-lib-jobs':
             branch:
                 - '5.1':
-                    downstream: ''
+                    downstream: 'e4-cpp-pvaClient-release-4.2-build'
 
 - project:
     name: pvaClientCPP
@@ -71,6 +71,10 @@
     jobs:
         - 'e4-cpp-{module}-master-lib-jobs':
             downstream: 'e4-cpp-example-master-build, e4-cpp-pvaPy-master-build'
+        - 'e4-cpp-{module}-release-lib-jobs':
+            branch:
+                - '4.2':
+                    downstream: 'e4-cpp-example-release-4.2-build, e4-cpp-pvaPy-release-0.6-build'
 
 - project:
     name: pvaPy
@@ -79,6 +83,10 @@
     language: 'C++/Python'
     jobs:
         - 'e4-cpp-{module}-master-lib-jobs'
+        - 'e4-cpp-{module}-release-lib-jobs':
+            branch:
+                - '0.6':
+                    downstream: ''
 
 - project:
     name: pvaSrvCPP
@@ -90,7 +98,7 @@
         - 'e4-cpp-{module}-release-lib-jobs':
             branch:
                 - '0.12':
-                    downstream: ''
+                    downstream: 'e4-cpp-example-release-4.2-build'
 
 - project:
     name: pvDatabaseCPP
@@ -99,6 +107,10 @@
     jobs:
         - 'e4-cpp-{module}-master-lib-jobs':
             downstream: 'e4-cpp-example-master-build'
+        - 'e4-cpp-{module}-release-lib-jobs':
+            branch:
+                - '4.2':
+                    downstream: 'e4-cpp-example-release-4.2-build'
 
 - project:
     name: exampleCPP
@@ -107,3 +119,6 @@
     allow-no-artifact: true
     jobs:
         - 'e4-cpp-{module}-master-prod-jobs'
+        - 'e4-cpp-{module}-release-prod-jobs':
+            branch:
+                - '4.2'
