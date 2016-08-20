@@ -36,8 +36,8 @@
         Use the <a href="https://github.com/epics-base/jenkins-jobs/issues">issue tracker</a>
         to report problems with this job.</i></p>
 
-#    email-notify: epics-pvdata-devel@lists.sourceforge.net
-    email-notify: ralph.lange@gmx.de
+    email-notify: epics-pvdata-devel@lists.sourceforge.net
+#    email-notify: ralph.lange@gmx.de
 
     properties:
         - github:
