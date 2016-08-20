@@ -19,9 +19,9 @@ These XML job descriptions are uploaded to Jenkins using its web service API
 
 ### Prepare
 
-1. Install Jenkins Job Builder (JJB). It has been found that cloning and
-installing the development version from its repo works flawlessly, while
-older versions (from system packages) are too buggy to be useful.
+1. Install Jenkins Job Builder (JJB).
+
+    $ sudo pip install jenkins-job-builder
 
 2. Clone this repository.
 
@@ -32,18 +32,20 @@ on the CloudBees Jenkins instance.
 ### Test
 
 To check the generated XML, use JJB's `test` command:
-```
-$ jenkins-jobs --conf ./cloudbees.ini test templates:cloudbees
-```
+
+    $ jenkins-jobs --conf ./cloudbees.ini test templates:cloudbees
+
 You can add job names as additional arguments to limit the XML generation
 to the specified jobs. Wildcards in job names are supported.
+
+You can add `-o <outputdir>` to create all jobs as separate XML files.
 
 ### Update
 
 To update the jobs on CloudBees, use JJB's `update` command:
-```
-$ jenkins-jobs --conf ./cloudbees.ini update templates:cloudbees
-```
+
+    $ jenkins-jobs --conf ./cloudbees.ini update templates:cloudbees
+
 Job names as additional arguments will update only the specified jobs.
 Wildcards in job names are supported.
 
