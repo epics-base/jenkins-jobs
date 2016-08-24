@@ -115,7 +115,7 @@
             RELEASE=$(git describe --tags --candidates=0) || true
             echo [INFO] Git revision $TAG
             if [ "$TAG" = "$RELEASE" ]; then
-                BRANCH=release-{branch} PUBLISH=${TAG%-doc} source jenkins/cloudbees_doc
+                BRANCH=release-{branch} PUBLISH=${{TAG%-doc}} source jenkins/cloudbees_doc
             else
                 BRANCH=release-{branch} source jenkins/cloudbees_doc
             fi
