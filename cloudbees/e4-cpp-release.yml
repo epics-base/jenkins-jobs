@@ -16,12 +16,13 @@
         - 'e4-cpp-{module}-release-{branch}-build'
         - 'e4-cpp-{module}-release-{branch}-doc'
 
-# Release branch product build: no binary tar created, and no API documentation
+# Release branch product build: no binary tar created
 - job-group:
     name: 'e4-cpp-{module}-release-prod-jobs'
     jobs:
         - 'e4-cpp-{module}-release-{branch}-build':
             allow-no-artifact: true
+        - 'e4-cpp-{module}-release-{branch}-doc'
 
 #######################################################
 # Build the specified release branch

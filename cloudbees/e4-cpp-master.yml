@@ -18,12 +18,13 @@
         - 'e4-cpp-{module}-master-c++11-build'
         - 'e4-cpp-{module}-master-pr-build'
 
-# Product build: no binary tar created, and no API documentation
+# Product build: no binary tar created
 - job-group:
     name: 'e4-cpp-{module}-master-prod-jobs'
     jobs:
         - 'e4-cpp-{module}-master-build':
             allow-no-artifact: true
+        - 'e4-cpp-{module}-master-doc'
         - 'e4-cpp-{module}-master-c++11-build':
             allow-no-artifact: true
         - 'e4-cpp-{module}-master-pr-build'
