@@ -1,0 +1,54 @@
+# EPICS V3 LaunchPad (git) to GitHub (git) sync Jenkins Jobs
+#
+# Jenkins Job Builder configuration template
+#
+# Author: Ralph Lange <ralph.lange@gmx.de>
+# Copyright (C) 2015-2017 ITER Organization.
+# All rights reserved. Use is subject to license terms.
+
+- job-template:
+    name: 'e3-sync-lp2gh'
+
+    lp-repo: 'epics-base'
+    gh-repo: 'epics-base'
+    email-notify: ralph.lange@gmx.de, mdavidsaver@gmail.com, anj@aps.anl.gov
+
+    project-type: freestyle
+    description: |
+        <h2>Sync EPICS Base (all branches) from LaunchPad to GitHub.</h2>
+        <p><i>Automatically generated job. <b>Do not edit using the web interface.</b><br>
+        See <a href="https://github.com/epics-base/jenkins-jobs">job generator repository</a>
+        for details.<br>
+        Use the <a href="https://github.com/epics-base/jenkins-jobs/issues">issue tracker</a>
+        to report problems.</i></p>
+        <p>Imports EPICS {branch} from its LaunchPad git repository, then
+        pushes to the {gh-repo} mirror on GitHub.</p>
+
+    properties:
+        - github:
+            url: https://github.com/epics-base/{gh-repo}/
+
+    logrotate:
+        daysToKeep: 60
+        numToKeep: -1
+        artifactDaysToKeep: 0
+        artifactNumToKeep: 0
+
+    scm:
+        - git:
+            url: https://git.launchpad.net/~epics-core/epics-base/+git/{lp-repo}
+            skip-tag: true
+
+    triggers:
+        - pollscm: "H/5 * * * *"
+
+    builders:
+        - shell: |
+            git remote add github git@github.com:epics-base/{gh-repo}.git
+            git push --all github
+            git push --tags github
+
+- project:
+    name: e3-sync
+    jobs:
+        - 'e3-sync-lp2gh'
