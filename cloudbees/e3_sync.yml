@@ -48,6 +48,7 @@
             git push --tags github +origin/master:refs/heads/3.16
             git push --tags github +origin/3.15:refs/heads/3.15
             git push --tags github +origin/3.14:refs/heads/3.14
+            git remote remove github
 
 - project:
     name: e3-sync
