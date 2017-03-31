@@ -21,7 +21,7 @@
         for details.<br>
         Use the <a href="https://github.com/epics-base/jenkins-jobs/issues">issue tracker</a>
         to report problems.</i></p>
-        <p>Imports EPICS {branch} from its LaunchPad git repository, then
+        <p>Imports EPICS from its LaunchPad git repository, then
         pushes to the {gh-repo} mirror on GitHub.</p>
 
     properties:
@@ -45,8 +45,9 @@
     builders:
         - shell: |
             git remote add github git@github.com:epics-base/{gh-repo}.git
-            git push --all github
-            git push --tags github
+            git push --tags github +origin/master:refs/heads/3.16
+            git push --tags github +origin/3.15:refs/heads/3.15
+            git push --tags github +origin/3.14:refs/heads/3.14
 
 - project:
     name: e3-sync
