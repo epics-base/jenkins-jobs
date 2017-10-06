@@ -3,7 +3,7 @@
 # Jenkins Job Builder configuration
 #
 # Author: Ralph Lange <ralph.lange@gmx.de>
-# Copyright (C) 2016 ITER Organization.
+# Copyright (C) 2016-2017 ITER Organization.
 # All rights reserved. Use is subject to license terms.
 
 # EPICS V4 Modules
@@ -46,7 +46,7 @@
         - NO_MICROBENCH
     jobs:
         - 'e4-cpp-{module}-master-lib-jobs':
-            downstream: 'e4-cpp-pvaSrv-master-build, e4-cpp-pvaClient-master-build, e4-cpp-pvDatabase-master-build'
+            downstream: 'e4-cpp-pvaClient-master-build, e4-cpp-pvDatabase-master-build'
         - 'e4-cpp-{module}-release-lib-jobs':
             branch:
                 - '5.0':
@@ -95,8 +95,6 @@
     repo: pvaSrv
     module: pvaSrv
     jobs:
-        - 'e4-cpp-{module}-master-lib-jobs':
-            downstream: 'e4-cpp-example-master-build'
         - 'e4-cpp-{module}-release-lib-jobs':
             branch:
                 - '0.12':
@@ -120,7 +118,6 @@
     module: example
     allow-no-artifact: true
     jobs:
-        - 'e4-cpp-{module}-master-prod-jobs'
         - 'e4-cpp-{module}-release-prod-jobs':
             branch:
                 - '4.2'
