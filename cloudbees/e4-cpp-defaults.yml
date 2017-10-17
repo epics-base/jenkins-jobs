@@ -20,9 +20,6 @@
         - 3.15.4
         - 3.16.DEV
 
-    microbench_axis:
-        - NO_MICROBENCH
-
     logrotate:
         daysToKeep: 60
         numToKeep: -1
@@ -48,10 +45,6 @@
             type: user-defined
             name: BASE
             values: '{obj:base_axis}'
-        - axis:
-            type: user-defined
-            name: MB
-            values: '{obj:microbench_axis}'
 
     builders:
         - shell: source jenkins/cloudbees_build

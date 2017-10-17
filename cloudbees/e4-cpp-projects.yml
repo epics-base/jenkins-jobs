@@ -12,13 +12,7 @@
     name: pvCommonCPP
     repo: '{name}'
     module: pvCommon
-    extra-description: ', with or without Micro-Benchmarks'
-    microbench_axis:
-        - WITH_MICROBENCH
-        - NO_MICROBENCH
     jobs:
-        - 'e4-cpp-{module}-master-lib-jobs':
-            downstream: 'e4-cpp-pvAccess-master-build'
         - 'e4-cpp-{module}-release-lib-jobs':
             branch:
                 - '4.2':
@@ -41,9 +35,6 @@
     repo: '{name}'
     module: pvAccess
     extra-description: ', with or without Micro-Benchmarks'
-    microbench_axis:
-        - WITH_MICROBENCH
-        - NO_MICROBENCH
     jobs:
         - 'e4-cpp-{module}-master-lib-jobs':
             downstream: 'e4-cpp-pvaClient-master-build, e4-cpp-pvDatabase-master-build'
