@@ -37,6 +37,8 @@
             artifact-id: '{module}'
         settings: /private/openepics/settings.xml
 
+    jdk: 'Oracle JDK 8 (latest)'
+
 - defaults:
     name: maven-build-defaults
 
