@@ -48,6 +48,7 @@
             git push --tags github +origin/3.16:refs/heads/3.16
             git push --tags github +origin/3.15:refs/heads/3.15
             git push --tags github +origin/3.14:refs/heads/3.14
+            git push --tags github +origin/7.0:refs/heads/7.0
             git push --tags github +origin/libcom/master:refs/heads/libcom/master
             git push --tags github +origin/ca/master:refs/heads/ca/master
             git push --tags github +origin/database/master:refs/heads/database/master
